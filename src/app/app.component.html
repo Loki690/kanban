@@ -1,0 +1,67 @@
+<div class="kanban-container">
+  <h1 class="app-title">{{ title }}</h1>
+
+  <div class="kanban-board" cdkDropListGroup>
+
+    <div class="kanban-column">
+      <h2 class="column-title todo-title">To Do</h2>
+      <div
+        [id]="todoListId"
+        cdkDropList
+        [cdkDropListData]="todo"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task-card" *ngFor="let task of todo" cdkDrag>
+          <div class="task-handle" cdkDragHandle>
+             <svg width="24px" height="24px" fill="currentColor" viewBox="0 0 24 24"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+          </div>
+          <h3 class="task-title">{{ task.title }}</h3>
+          <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+        </div>
+        <div *ngIf="todo.length === 0" class="empty-list-placeholder">Drop tasks here</div>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <h2 class="column-title inprogress-title">In Progress</h2>
+      <div
+        [id]="inProgressListId"
+        cdkDropList
+        [cdkDropListData]="inProgress"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task-card" *ngFor="let task of inProgress" cdkDrag>
+           <div class="task-handle" cdkDragHandle>
+             <svg width="24px" height="24px" fill="currentColor" viewBox="0 0 24 24"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+          </div>
+          <h3 class="task-title">{{ task.title }}</h3>
+          <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+        </div>
+        <div *ngIf="inProgress.length === 0" class="empty-list-placeholder">Drop tasks here</div>
+      </div>
+    </div>
+
+    <div class="kanban-column">
+      <h2 class="column-title done-title">Done</h2>
+      <div
+        [id]="doneListId"
+        cdkDropList
+        [cdkDropListData]="done"
+        class="task-list"
+        (cdkDropListDropped)="drop($event)">
+        <div class="task-card task-done" *ngFor="let task of done" cdkDrag>
+           <div class="task-handle" cdkDragHandle>
+             <svg width="24px" height="24px" fill="currentColor" viewBox="0 0 24 24"><path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg>
+          </div>
+          <h3 class="task-title">{{ task.title }}</h3>
+          <p class="task-description" *ngIf="task.description">{{ task.description }}</p>
+        </div>
+         <div *ngIf="done.length === 0" class="empty-list-placeholder">Drop tasks here</div>
+      </div>
+    </div>
+
+  </div> </div> <div *cdkDragPreview class="task-card-preview">
+  <div class="task-card"> Dragging... </div>
+</div>
+
+<div *cdkDragPlaceholder class="task-card-placeholder"></div>

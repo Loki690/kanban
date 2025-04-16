@@ -1,0 +1,174 @@
+/* Basic Reset & Body Styling */
+:host {
+    display: block; /* Ensure component takes block layout */
+    font-family: sans-serif;
+    background-color: #f4f7f6; /* Light background for the page */
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .app-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: bold;
+  }
+  
+  /* Kanban Container */
+  .kanban-container {
+    max-width: 1200px;
+    margin: 0 auto; /* Center the board */
+  }
+  
+  /* Kanban Board Grid Layout */
+  .kanban-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Spacing between columns */
+    align-items: start; /* Align columns to the top */
+  }
+  
+  /* Kanban Column Styling */
+  .kanban-column {
+    background-color: #e9ecef; /* Light grey background for columns */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack title and list vertically */
+  }
+  
+  .column-title {
+    margin: 0 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Specific Column Title Colors */
+  .todo-title { border-color: #ffc107; color: #c79100; } /* Amber */
+  .inprogress-title { border-color: #17a2b8; color: #10707f; } /* Info Blue */
+  .done-title { border-color: #28a745; color: #1c7430; } /* Success Green */
+  
+  /* Task List Styling */
+  .task-list {
+    min-height: 200px; /* Minimum height for drop area */
+    background-color: #f8f9fa; /* Slightly lighter background for task area */
+    border-radius: 6px;
+    padding: 10px;
+    transition: background-color 0.2s ease; /* Smooth transition on hover/drag */
+    flex-grow: 1; /* Allow list to grow */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between task cards */
+  }
+  
+  /* Task Card Styling */
+  .task-card {
+    background-color: #ffffff; /* White background for cards */
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 10px; /* Spacing between cards */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    cursor: grab; /* Indicate draggable */
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+    position: relative; /* Needed for drag handle positioning */
+    padding-left: 35px; /* Make space for handle */
+  }
+  
+  .task-card:active {
+    cursor: grabbing;
+  }
+  
+  .task-title {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #495057;
+  }
+  
+  .task-description {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin: 0;
+    word-wrap: break-word; /* Prevent long descriptions from overflowing */
+  }
+  
+  /* Styling for tasks in the 'Done' column */
+  .task-done {
+    border-left: 5px solid #28a745; /* Green indicator */
+    background-color: #e9f5ec; /* Light green background */
+  }
+  
+  .task-done .task-title {
+    text-decoration: line-through; /* Strike through title */
+    color: #5a6268;
+  }
+  
+  /* Drag Handle */
+  .task-handle {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    cursor: grab;
+    color: #adb5bd; /* Light grey handle */
+  }
+  .task-handle svg {
+    display: block; /* Remove extra space below SVG */
+  }
+  
+  /* CDK Drag and Drop Specific Styles */
+  
+  /* Style for the element being dragged */
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    border-radius: 4px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    /* The preview class '.task-card-preview' is defined in the HTML */
+  }
+  
+  /* Style for the placeholder element */
+  .cdk-drag-placeholder {
+    opacity: 0.3;
+    /* The placeholder class '.task-card-placeholder' is defined in the HTML */
+    /* It should mimic the task card's height */
+    background-color: #adb5bd;
+    border: 1px dashed #6c757d;
+    min-height: 60px; /* Adjust as needed */
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  /* Style applied to the source element while dragging */
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  /* Style for the drop list when an item is being dragged over it */
+  .cdk-drop-list-dragging .task-card:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+  
+  /* Highlight the drop zone */
+  .cdk-drop-list-receiving {
+    background-color: #d6e9ff; /* Light blue highlight */
+  }
+  
+  /* Placeholder for empty lists */
+  .empty-list-placeholder {
+      text-align: center;
+      padding: 20px;
+      color: #6c757d;
+      font-style: italic;
+      border: 2px dashed #ced4da;
+      border-radius: 4px;
+      margin-top: 10px; /* Add some space if list was previously populated */
+  }
+  
